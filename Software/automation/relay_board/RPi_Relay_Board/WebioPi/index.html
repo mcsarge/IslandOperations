@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content = "height = device-height, width = 420, user-scalable = no" /> 
+    <title>WebIOPi | Relay_Module</title>
+    <script type="text/javascript" src="/webiopi.js"></script>
+    <script type="text/javascript">
+    webiopi().ready(function() {
+        // Setting the mode of GPIO.24 and GPIO.25 is output
+        webiopi().setFunction(26, "out");
+        webiopi().setFunction(20, "out");
+		webiopi().setFunction(21, "out");
+        
+        var content, button;
+        content = $("#content");
+        
+        // Creat a button
+        button = webiopi().createGPIOButton(26, "Relay_CH1");
+        content.append(button);
+        
+        button = webiopi().createGPIOButton(20, "Relay_CH2");
+        content.append(button); // append button to content div
+		
+		button = webiopi().createGPIOButton(21, "Relay_CH3");
+        content.append(button); // append button to content div
+               
+        // 
+        webiopi().refreshGPIO(false);
+    });
+           
+    </script>
+    <style type="text/css">
+        button {
+            display: block;
+            margin: 5px 5px 5px 5px;
+            width: 200px;
+            height: 55px;
+            font-size: 24pt;
+            font-weight: bold;
+            color: black;
+        }
+        
+        .LOW {
+            background-color: Red;
+        }
+        
+        .HIGH {
+            background-color: White;
+        }
+    </style>
+</head>
+<body>
+    <div id="content" align="center"></div>
+</body>
+</html>
